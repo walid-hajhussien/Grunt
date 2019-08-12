@@ -17,10 +17,12 @@ module.exports = function(grunt) {
         dest: "css/allSass/styles.scss"
       }
     },
+
     clean: {
       build: ["build/**"],
       style: ["css/style.css", "css/style.css.map", "css/allSass/**"]
     },
+
     sass: {
       options: {
         implementation: sass,
@@ -34,6 +36,13 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+
+    uglify: {
+      build: {
+        src: "build/script.js",
+        dest: "build/script.js"
+      }
     }
   });
 
@@ -41,6 +50,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-sass");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
 
   //register task
 
@@ -58,7 +68,8 @@ module.exports = function(grunt) {
     "clean-all",
     "sass-css",
     "concat-js",
-    "concat-css"
+    "concat-css",
+    "uglify-js"
   ]);
 
   // clean build file
@@ -72,4 +83,7 @@ module.exports = function(grunt) {
 
   //convert sass to css
   grunt.registerTask("sass-css", ["concat-sass", "sass"]);
+
+  //uglify js file
+  grunt.registerTask("uglify-js", ["uglify"]);
 };
