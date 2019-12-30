@@ -43,7 +43,15 @@ module.exports = function(grunt) {
         src: "build/script.js",
         dest: "build/script.js"
       }
+    },
+
+    shell:{
+      multiple:{
+          command:['git add .','git commit -m "grunt commit"','git push origin master'].join('&&')
+      }
     }
+
+
   });
 
   //load plugins
@@ -51,6 +59,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-sass");
   grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-shell");
 
   //register task
 
@@ -86,4 +95,7 @@ module.exports = function(grunt) {
 
   //uglify js file
   grunt.registerTask("uglify-js", ["uglify"]);
+
+  // deploy 
+  grunt.registerTask("deploy",["shell"])
 };
