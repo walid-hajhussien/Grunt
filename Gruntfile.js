@@ -46,7 +46,7 @@ module.exports = function(grunt) {
     },
 
     shell:{
-      multiple:{
+      gitHub:{
           command:['git add .','git commit -m "grunt commit"','git push origin master'].join('&&')
       }
     }
